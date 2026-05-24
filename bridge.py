@@ -47,7 +47,7 @@ try:
             if "Battery Voltage:" in line:
                 try:
                     voltage = float(line.split(":")[1].replace("V", "").strip())
-                    soc = max(0, min(100, ((voltage - 2.0) / (3.3 - 2.0)) * 100))
+                    soc = max(0, min(100, ((voltage - 3.0) / (4.2 - 3.0)) * 100))
 
                     # Build AI input
                     input_row = []
