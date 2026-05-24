@@ -56,20 +56,9 @@ def get_latest():
 @app.route('/api/microgrid/summary', methods=['GET'])
 def get_summary():
     try:
-        # Latest from member 1 (solar)
-        m1 = collection.find_one(
-            {"source": "solar"}, {"_id": 0},
-            sort=[("timestamp", -1)]
-        )
-        # Latest from member 2 (hotpot)
-        m2 = collection.find_one(
-            {"source": "hotpot"}, {"_id": 0},
-            sort=[("timestamp", -1)]
-        )
-        # Latest overall
-        latest = collection.find_one(
-            {}, {"_id": 0}, sort=[("timestamp", -1)]
-        )
+        m1 = collection.find_one({"source": "solar"}, {"_id": 0}, sort=[("timestamp", -1)])
+        m2 = collection.find_one({"source": "hotpot"}, {"_id": 0}, sort=[("timestamp", -1)])
+        latest = collection.find_one({}, {"_id": 0}, sort=[("timestamp", -1)])
 
         def clean(doc):
             if doc and 'timestamp' in doc:
