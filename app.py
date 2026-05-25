@@ -171,8 +171,8 @@ st.markdown("""
 # -----------------------------
 @st.cache_resource
 def get_mongo_db():
-    password = quote_plus("Pasindi@2002.22")
-    uri = f"mongodb+srv://en22198822_db_user:{password}@cluster0.zrezdhz.mongodb.net/?retryWrites=true&w=majority"
+    import os
+    uri = st.secrets.get("MONGO_URI") or os.environ.get("MONGO_URI")
     client = pymongo.MongoClient(uri)
     return client['FYP_Database']
 
